@@ -9,8 +9,13 @@ GitHub Pages is configured to deploy through GitHub Actions at
 https://jesco-tan.github.io/broadband-equity-landscape/.
 TypeScript, all 25 unit tests, and whitespace checks pass after the control
 simplification. The browser results below predate that simplification; no fresh
-browser verification has been performed for it. Production build and deployment
-verification are pending explicit build authorization.
+browser verification has been performed for it. The owner explicitly authorized
+the production build and deployment. `bun run build` passed with Vite 7.3.7;
+the output includes relative asset paths and all 400 tract records. Vite reports
+one bundle-size advisory for the 628.20 kB JavaScript bundle (164.20 kB gzip).
+GitHub Actions performs the same type check, tests, and build before deploying.
+Deployment status is recorded by the repository's Actions runs and github-pages
+environment.
 
 ## Data and non-build checks
 

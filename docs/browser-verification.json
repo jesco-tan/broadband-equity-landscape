@@ -1,0 +1,154 @@
+{
+  "checks": [
+    "Initial 3D state and WebGL map loaded",
+    "Visible choice groups support native keyboard navigation",
+    "Plain-language terminology guide opens and closes",
+    "Pointer inspection opens adjacent details and a wide selected-cell outline",
+    "Pointer inspection does not leave the guided story",
+    "Next chapter restores visible story content while retaining map selection",
+    "LL story totals match source",
+    "List inspection shows details beside the list while keeping the story visible",
+    "Keyboard inspection and search preserve story and totals",
+    "3D and outside emphasis preserve inspection and targeting",
+    "Manual controls explore; resume reapplies current step",
+    "Closing selected-area details restores the story and removes the outline",
+    "Flat map footprint is pickable",
+    "Restart resets inspection, search and coverage",
+    "Rendering stops while idle",
+    "Mobile area selection brings details into view without horizontal overflow",
+    "360px layout has no horizontal page overflow",
+    "Reduced motion does not run an animated camera transition",
+    "Forced table fallback retains controls, metrics and inspection",
+    "Actual graphics context loss retains analytical interface",
+    "Teardown releases all tracked geometries and loses the GPU context",
+    "Failed dataset fetch provides retry and regeneration guidance",
+    "Malformed dataset is rejected before analytical rendering",
+    "No uncaught page errors"
+  ],
+  "environment": {
+    "browser": "150.0.7871.24",
+    "platform": "win32",
+    "cpu": "AMD Ryzen 7 7800X3D 8-Core Processor           ",
+    "logicalCpus": 16,
+    "memoryGiB": 31,
+    "browserViewport": [
+      1440,
+      1050
+    ],
+    "date": "2026-11-01T18:43:35.636Z"
+  },
+  "initialNavigation": {
+    "firstMapMs": 21198.100000023842,
+    "documentTiming": {
+      "name": "http://127.0.0.1:5174/",
+      "entryType": "navigation",
+      "startTime": 0,
+      "duration": 21043.600000023842,
+      "initiatorType": "navigation",
+      "deliveryType": "",
+      "nextHopProtocol": "http/1.1",
+      "renderBlockingStatus": "non-blocking",
+      "contentType": "text/html",
+      "contentEncoding": "",
+      "workerStart": 0,
+      "workerRouterEvaluationStart": 0,
+      "workerCacheLookupStart": 0,
+      "workerMatchedSourceType": "",
+      "workerFinalSourceType": "",
+      "redirectStart": 0,
+      "redirectEnd": 0,
+      "fetchStart": 0.5,
+      "domainLookupStart": 20985.80000001192,
+      "domainLookupEnd": 20985.80000001192,
+      "connectStart": 20985.80000001192,
+      "secureConnectionStart": 0,
+      "connectEnd": 20986.19999998808,
+      "requestStart": 20986.30000001192,
+      "responseStart": 20988.600000023842,
+      "firstInterimResponseStart": 0,
+      "finalResponseHeadersStart": 20988.600000023842,
+      "responseEnd": 20989,
+      "transferSize": 1172,
+      "encodedBodySize": 872,
+      "decodedBodySize": 872,
+      "responseStatus": 200,
+      "serverTiming": [],
+      "unloadEventStart": 0,
+      "unloadEventEnd": 0,
+      "domInteractive": 20994.19999998808,
+      "domContentLoadedEventStart": 21042.899999976158,
+      "domContentLoadedEventEnd": 21043.100000023842,
+      "domComplete": 21043.600000023842,
+      "loadEventStart": 21043.600000023842,
+      "loadEventEnd": 21043.600000023842,
+      "type": "navigate",
+      "redirectCount": 0,
+      "activationStart": 0,
+      "criticalCHRestart": 0,
+      "notRestoredReasons": null,
+      "confidence": {
+        "randomizedTriggerRate": 0.4994798,
+        "value": "low"
+      }
+    }
+  },
+  "rendering": {
+    "tracts": 400,
+    "parts": 400,
+    "selection": {
+      "id": null,
+      "parts": 0,
+      "outlineWidth": 1.5
+    },
+    "vertices": 16000,
+    "edgeVertices": 9600,
+    "triangles": 5600,
+    "frames": 375,
+    "firstMapMs": 150.19999998807907,
+    "mapInitializationMs": 87.89999997615814,
+    "pixelRatio": 1,
+    "viewport": [
+      1032,
+      410
+    ],
+    "frameTimeP95": 13.600000000000364,
+    "renderCpuTimeP95": 3.399999976158142,
+    "interactionSamples": 739,
+    "disposed": false,
+    "contextLost": false,
+    "memory": {
+      "geometries": 1058,
+      "textures": 1
+    }
+  },
+  "teardown": {
+    "tracts": 400,
+    "parts": 400,
+    "selection": {
+      "id": null,
+      "parts": 0,
+      "outlineWidth": 1.5
+    },
+    "vertices": 16000,
+    "edgeVertices": 9600,
+    "triangles": 5600,
+    "frames": 2,
+    "firstMapMs": 130.80000001192093,
+    "mapInitializationMs": 99.30000001192093,
+    "pixelRatio": 1,
+    "viewport": [
+      326,
+      505
+    ],
+    "frameTimeP95": null,
+    "renderCpuTimeP95": null,
+    "interactionSamples": 0,
+    "disposed": true,
+    "contextLost": true,
+    "memory": {
+      "geometries": 0,
+      "textures": 1
+    }
+  },
+  "errors": []
+}

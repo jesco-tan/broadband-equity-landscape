@@ -23,7 +23,7 @@ export const initialState = (): State => ({
 });
 const steps: Pick<State, "layer" | "view" | "targetingMode" | "emphasis">[] = [
   { layer: "adoption", view: "tilted", targetingMode: "all", emphasis: "none" },
-  { layer: "lisa", view: "tilted", targetingMode: "ll", emphasis: "targeted" },
+  { layer: "lisa", view: "flat", targetingMode: "ll", emphasis: "targeted" },
   { layer: "lisa", view: "tilted", targetingMode: "ll", emphasis: "targeted" },
   { layer: "lisa", view: "tilted", targetingMode: "ll", emphasis: "outside" },
 ];

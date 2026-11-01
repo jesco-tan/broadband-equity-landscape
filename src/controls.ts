@@ -4,13 +4,15 @@ import { layerNames } from "./colors";
 function choices(id: string, title: string, values: [string, string][]) {
   return `<fieldset id="${id}" class="choice-group"><legend>${title}</legend><div class="choices">${values.map(([value, label]) => `<label class="choice"><input type="radio" name="${id}" value="${value}"><span>${label}</span></label>`).join("")}</div></fieldset>`;
 }
-export function explorerControls() {
+export function targetControls() {
+  return choices("targeting", "Include in target", [
+    ["all", "All areas"],
+    ["ll", "Cold spots only"],
+  ]);
+}
+export function mapControls() {
   return (
     choices("layer", "Map colors", Object.entries(layerNames)) +
-    choices("targeting", "Include in target", [
-      ["all", "All areas"],
-      ["ll", "Cold spots only"],
-    ]) +
     choices("emphasis", "Highlight", [
       ["none", "Everything"],
       ["targeted", "Inside target"],

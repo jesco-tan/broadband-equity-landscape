@@ -7,6 +7,7 @@ dist/
 __pycache__/
 *.pyc
 docs/desktop.png
+docs/desktop-opening.png
 docs/mobile.png
 docs/map-flat.png
 .DS_Store

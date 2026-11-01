@@ -90,7 +90,7 @@ summary:focus-visible {
   color: var(--teal);
 }
 .wordmark-sub {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 400;
   border-left: 1px solid var(--line);
   padding-left: 16px;
@@ -98,7 +98,7 @@ summary:focus-visible {
   color: var(--muted);
 }
 .dataset-badge {
-  font-size: 12px;
+  font-size: 13px;
   background: #e4eadb;
   border: 1px solid #c8d4bd;
   border-radius: 20px;
@@ -122,7 +122,7 @@ main {
   justify-content: space-between;
   gap: 40px;
   align-items: flex-end;
-  margin: 45px 0 28px;
+  margin: 24px 0 18px;
 }
 .eyebrow {
   font-size: 13px;
@@ -139,7 +139,7 @@ h1 {
   font-family: Georgia, "Times New Roman", serif;
   font-weight: 400;
   line-height: 1.05;
-  font-size: clamp(36px, 3.9vw, 60px);
+  font-size: clamp(34px, 3.2vw, 48px);
   letter-spacing: -1.8px;
   margin-bottom: 0;
 }
@@ -151,7 +151,7 @@ h1 {
   color: var(--muted);
 }
 .intro-note strong {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   display: block;
   margin-top: 12px;
@@ -162,8 +162,8 @@ h1 {
   gap: 13px;
   background: #e9ede3;
   border-radius: 5px;
-  padding: 12px 17px;
-  margin-bottom: 25px;
+  padding: 6px 17px;
+  margin-bottom: 18px;
 }
 .method-note .reading-guide {
   margin-left: auto;
@@ -207,7 +207,7 @@ h1 {
   line-height: 1.7;
 }
 .method-note p {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   margin: 0;
   color: #415248;
@@ -223,7 +223,7 @@ h1 {
 }
 .workspace {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 310px;
+  grid-template-columns: minmax(0, 1fr) 340px;
   border: 1px solid var(--line);
   border-radius: 8px;
   overflow: hidden;
@@ -241,7 +241,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 15px;
-  font-size: 12px;
+  font-size: 13px;
   z-index: 1;
 }
 .map-topline > span:first-child {
@@ -249,14 +249,14 @@ h1 {
 }
 .map-kind {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 13px;
 }
 .map {
-  height: 460px;
+  height: 320px;
   min-width: 0;
   position: relative;
-  flex: 1;
-  min-height: 410px;
+  flex: none;
+  min-height: 300px;
   background: radial-gradient(ellipse at center, #f9faf4 0, #eef0e6 70%);
 }
 .map canvas {
@@ -270,7 +270,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  padding: 0 24px 15px;
+  padding: 12px 24px;
 }
 .segmented {
   display: flex;
@@ -280,12 +280,12 @@ h1 {
   padding: 3px;
 }
 .segmented button {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--ink);
   background: transparent;
   border: 0;
   padding: 8px 13px;
-  min-height: 36px;
+  min-height: 44px;
 }
 .segmented button[aria-pressed="true"] {
   background: var(--teal);
@@ -295,12 +295,11 @@ h1 {
   background: transparent;
   color: var(--teal);
   border-color: #b9c9bd;
-  font-size: 12px;
+  font-size: 13px;
 }
 .legend-wrap {
-  border-top: 1px solid var(--line);
-  padding: 16px 24px 0;
-  font-size: 11px;
+  padding: 12px 24px 0;
+  font-size: 13px;
 }
 #legend {
   display: flex;
@@ -330,13 +329,13 @@ h1 {
   height: 9px !important;
 }
 .legend-wrap p {
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.5;
   max-width: 570px;
   margin: 12px 0 0;
 }
 .map-hint {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
   padding: 12px 24px 16px;
   margin: 0;
@@ -351,48 +350,45 @@ h1 {
 .story-top {
   display: flex;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
 }
 .progress {
   display: flex;
   gap: 6px;
-  margin: 15px 0 32px;
+  margin: 8px 0 16px;
 }
-.progress button {
+.progress span {
   position: relative;
   flex: 1;
-  min-height: 24px;
-  padding: 0;
-  border: 0;
-  background: transparent;
+  padding: 8px 0;
 }
-.progress button:after {
+.progress span:after {
   content: "";
   display: block;
   height: 3px;
   background: #d7ddcf;
 }
-.progress button[aria-current="step"]:after {
+.progress span.current:after {
   background: var(--teal);
 }
 .story-panel h2 {
   font-family: Georgia, serif;
-  font-size: 32px;
-  line-height: 1.13;
+  font-size: 29px;
+  line-height: 1.15;
   font-weight: 400;
   letter-spacing: -0.6px;
   margin-bottom: 19px;
 }
 .story-panel > p,
 #story-body {
-  font-size: 14px;
-  line-height: 1.8;
+  font-size: 16px;
+  line-height: 1.6;
   color: var(--muted);
 }
 .story-insight {
-  margin: 12px 0 30px;
-  padding: 20px 0;
+  margin: 12px 0 18px;
+  padding: 14px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   display: flex;
@@ -411,17 +407,17 @@ h1 {
   line-height: 1.6;
 }
 .story-insight small {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
 }
 .story-nav {
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  margin-top: auto;
+  margin-top: 16px;
 }
 .story-nav button {
-  font-size: 12px;
+  font-size: 13px;
   padding: 11px 14px;
 }
 .story-nav button span {
@@ -439,7 +435,7 @@ h1 {
   background: transparent;
   color: var(--teal);
   font-weight: 400;
-  font-size: 11px;
+  font-size: 13px;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -468,7 +464,7 @@ h1 {
   margin: 0;
 }
 .section-heading p:last-child {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
   color: var(--muted);
   margin-bottom: 0;
@@ -478,7 +474,7 @@ h1 {
 }
 .controls {
   display: grid;
-  grid-template-columns: 1.35fr 1fr 1.1fr;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: 24px;
   padding: 20px 0;
   border-top: 1px solid var(--line);
@@ -493,7 +489,7 @@ h1 {
 .choice-group legend {
   padding: 0;
   margin-bottom: 10px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: var(--ink);
 }
@@ -520,12 +516,12 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
+  min-height: 44px;
   padding: 9px 13px;
   border: 1px solid #b4c3ba;
   border-radius: 6px;
   background: #fafbf6;
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.4;
 }
 .choice:hover span {
@@ -544,7 +540,7 @@ h1 {
 }
 .chart-data {
   margin-top: 18px;
-  font-size: 12px;
+  font-size: 13px;
 }
 .chart-data summary {
   cursor: pointer;
@@ -559,7 +555,7 @@ h1 {
   margin-bottom: 24px;
 }
 label {
-  font-size: 12px;
+  font-size: 13px;
   display: block;
   color: var(--muted);
 }
@@ -579,7 +575,7 @@ select {
   padding-right: 25px;
 }
 .controls p {
-  font-size: 11px;
+  font-size: 13px;
   line-height: 1.6;
   margin: 0;
   align-self: center;
@@ -613,12 +609,12 @@ select {
   color: var(--teal);
 }
 .metrics > div > span:last-child {
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.5;
 }
 .metrics small {
   display: block;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
 }
 .charts {
@@ -637,7 +633,7 @@ h3 {
   margin-bottom: 9px;
 }
 figcaption p {
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
   margin-bottom: 25px;
 }
@@ -659,13 +655,13 @@ figcaption p {
   display: flex;
   justify-content: space-between;
   margin-top: 8px;
-  font-size: 10px;
+  font-size: 13px;
   color: var(--muted);
 }
 .chart-key {
   display: flex;
   gap: 24px;
-  font-size: 11px;
+  font-size: 13px;
   margin: 18px 0;
 }
 .chart-key span {
@@ -685,7 +681,7 @@ figcaption p {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-  font-size: 11px;
+  font-size: 13px;
 }
 .county-row > span:last-child {
   text-align: right;
@@ -697,7 +693,7 @@ figcaption p {
 .chart-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 11px;
+  font-size: 13px;
   margin-top: 22px;
   font-variant-numeric: tabular-nums;
 }
@@ -729,7 +725,7 @@ figcaption p {
   max-width: 100%;
 }
 .subtle {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   line-height: 1.65;
 }
@@ -739,7 +735,7 @@ figcaption p {
   scroll-padding: 45px;
 }
 .tract-table {
-  font-size: 12px;
+  font-size: 13px;
   width: 100%;
   border-collapse: collapse;
 }
@@ -759,10 +755,12 @@ figcaption p {
   font-weight: 500;
 }
 .inspect-button {
-  font-size: 11px;
-  min-height: 36px;
+  font-size: 13px;
+  min-height: 44px;
   padding: 7px 10px;
-  border-color: #b6c6b4;
+  border-color: transparent;
+  text-decoration: underline;
+  text-underline-offset: 3px;
   background: transparent;
   color: var(--teal);
 }
@@ -863,7 +861,7 @@ dl > div {
   gap: 20px;
   padding: 9px 0;
   border-bottom: 1px solid var(--line);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.5;
 }
 dt {
@@ -878,7 +876,7 @@ dd {
   border-top: 1px solid var(--line);
   padding: 24px 0 32px;
   color: var(--muted);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.8;
 }
 .methodology summary {
@@ -905,7 +903,7 @@ footer {
   justify-content: space-between;
   gap: 20px;
   padding: 24px 48px;
-  font-size: 11px;
+  font-size: 13px;
   color: var(--muted);
 }
 .fallback {
@@ -926,7 +924,7 @@ footer {
   font-weight: 400;
 }
 .fallback p:last-child {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--muted);
   margin-top: 20px;
 }
@@ -955,9 +953,65 @@ footer {
 [hidden] {
   display: none !important;
 }
+
+#mobile-story-slot,
+#mobile-nav-slot {
+  display: none;
+}
+.map-settings {
+  border-top: 1px solid var(--line);
+}
+.map-settings > summary {
+  cursor: pointer;
+  padding: 12px 24px;
+  min-height: 44px;
+  font-size: 13px;
+  color: var(--teal);
+}
+.map-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 16px;
+  padding: 4px 24px 16px;
+}
+.map-toolbar > p {
+  grid-column: 1 / -1;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--muted);
+}
+.story-insight small {
+  display: block;
+}
+.coverage-definition {
+  max-width: 80ch;
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 18px 0 0;
+}
+.statistical-details {
+  margin-top: 14px;
+  font-size: 13px;
+}
+.statistical-details summary {
+  cursor: pointer;
+  color: var(--teal);
+  padding: 10px 0;
+}
+.return-map {
+  display: inline-block;
+  padding: 14px 0 0;
+  font-size: 13px;
+}
+#map-caption {
+  scroll-margin-top: 20px;
+}
+
 @media (min-width: 1500px) {
   .map {
-    height: 550px;
+    height: 400px;
   }
 }
 @media (max-width: 1100px) {
@@ -971,7 +1025,7 @@ footer {
     display: none;
   }
   .workspace {
-    grid-template-columns: minmax(0, 1fr) 285px;
+    grid-template-columns: minmax(0, 1fr) 310px;
   }
   .map-kind {
     display: none;
@@ -981,12 +1035,6 @@ footer {
   }
   .controls {
     grid-template-columns: 1fr 1fr;
-  }
-  .choice-group:first-child {
-    grid-column: 1 / -1;
-  }
-  .controls p {
-    grid-column: 1/-1;
   }
   .intro-note {
     max-width: 280px;
@@ -999,16 +1047,44 @@ footer {
   }
 }
 @media (max-width: 780px) {
+  #mobile-story-slot,
+  #mobile-nav-slot {
+    display: block;
+    background: #f9faf5;
+    padding: 20px;
+  }
+  #mobile-nav-slot {
+    border-top: 1px solid var(--line);
+  }
+  #mobile-nav-slot .story-nav {
+    margin-top: 0;
+  }
+  #mobile-story-slot h2 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 28px;
+    margin: 12px 0;
+  }
+  #mobile-story-slot .progress {
+    margin-bottom: 8px;
+  }
+  #mobile-story-slot .story-insight {
+    margin-bottom: 0;
+  }
+  .story-panel:not(:has(.selected-panel:not([hidden]))) {
+    display: none;
+  }
+
   .inspection.has-details {
     grid-template-columns: 1fr;
   }
   .intro {
     display: block;
-    margin-top: 30px;
+    margin-top: 20px;
   }
   .intro-note {
     max-width: 500px;
-    margin-top: 23px;
+    margin-top: 12px;
   }
   .intro-note strong {
     margin-top: 5px;
@@ -1030,9 +1106,9 @@ footer {
     margin-bottom: 18px;
   }
   .story-insight {
-    flex-direction: row;
-    align-items: center;
-    gap: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
     margin: 10px 0 20px;
   }
   .story-nav {
@@ -1043,8 +1119,8 @@ footer {
     gap: 25px;
   }
   .map {
-    height: 440px;
-    min-height: 360px;
+    height: 340px;
+    min-height: 300px;
   }
   .charts {
     grid-template-columns: 1fr;
@@ -1092,16 +1168,16 @@ footer {
     font-size: 21px;
   }
   .dataset-badge {
-    font-size: 10px;
+    font-size: 13px;
     margin-left: auto;
     padding: 6px 9px;
   }
   .source-link {
-    font-size: 11px;
+    font-size: 13px;
     margin-left: auto;
   }
   .intro h1 {
-    font-size: 39px;
+    font-size: 34px;
     letter-spacing: -1.4px;
   }
   .method-note {
@@ -1112,30 +1188,30 @@ footer {
     border-radius: 6px;
   }
   .map-topline {
-    padding: 16px 15px 0;
+    padding: 4px 15px 16px;
   }
   .map {
     height: 360px;
     min-height: 320px;
   }
   .map-controls {
-    padding: 0 12px 12px;
+    padding: 12px;
     gap: 7px;
   }
   .map-controls .quiet {
     padding: 8px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .segmented button {
     padding: 8px 9px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .legend-wrap {
     padding: 14px 15px 0;
   }
   .map-hint {
     padding: 12px 15px;
-    font-size: 10px;
+    font-size: 13px;
   }
   .controls {
     grid-template-columns: 1fr;
@@ -1151,14 +1227,14 @@ footer {
     padding-left: 10px;
   }
   .metric-number {
-    font-size: 26px;
+    font-size: 25px;
     letter-spacing: -1px;
   }
   .metrics > div > span:last-child {
-    font-size: 11px;
+    font-size: 13px;
   }
   .metrics small {
-    font-size: 10px;
+    font-size: 13px;
   }
   .section-heading h2 {
     font-size: 29px;
@@ -1169,17 +1245,28 @@ footer {
   .tract-table th,
   .tract-table td {
     padding: 5px;
-    font-size: 11px;
+    font-size: 13px;
   }
   .story-panel {
     padding: 22px;
+  }
+  .map-toolbar {
+    grid-template-columns: 1fr;
+    padding: 4px 15px 16px;
+  }
+  .metrics {
+    grid-template-columns: 1fr;
+  }
+  .metrics > div {
+    border-left: 0;
+    padding: 10px 0;
   }
   .county-row {
     grid-template-columns: 58px 1fr 55px;
     gap: 6px;
   }
   .chart-table {
-    font-size: 10px;
+    font-size: 13px;
   }
   .source-link {
     min-height: 24px;

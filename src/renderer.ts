@@ -15,6 +15,7 @@ export function createMap(
   inspect: (id: string) => void,
   explore: () => void,
   fallback: (message: string) => void,
+  cameraChanged: (awayFromDefault: boolean) => void,
 ) {
   const start = performance.now();
   const renderer = new T.WebGLRenderer({ antialias: true, alpha: true });
@@ -254,6 +255,7 @@ export function createMap(
       : new T.Vector3(0, -distance * 0.75, distance * 0.8);
   }
   function reset(animate = false) {
+    cameraChanged(false);
     const tilted = state.view === "tilted";
     controls.maxPolarAngle = tilted ? Math.PI / 2 - 0.15 : 0.001;
     controls.minPolarAngle = 0.001;
@@ -350,6 +352,8 @@ export function createMap(
   };
   const onChange = () => {
     if (interacting) explore();
+    if (state && !transition)
+      cameraChanged(camera.position.distanceTo(position(state.view)) > 0.01);
     request();
   };
   const sample = (time: number) => {

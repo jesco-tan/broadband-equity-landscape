@@ -6,7 +6,7 @@ test("story steps apply their exact states and preserve inspection", () => {
   expect(s).toMatchObject({
     layer: "lisa",
     targetingMode: "ll",
-    view: "tilted",
+    view: "flat",
     emphasis: "targeted",
     inspectedTractId: "abc",
   });

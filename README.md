@@ -4,6 +4,10 @@ A standalone TypeScript and Three.js spatial explorer. Compare significant
 low-low broadband clusters with underserved counts in a synthetic dataset.
 The bundled data preserves an audited upstream run with permission from its owner.
 
+Project site: https://jesco-tan.github.io/broadband-equity-landscape/
+
+Source: https://github.com/jesco-tan/broadband-equity-landscape
+
 The upstream analysis uses synthetic population as a household proxy. The app
 labels this limitation throughout. The grid is not authentic California tract
 geography, and coverage is not service delivery, grant eligibility or causation.
@@ -25,33 +29,52 @@ bun run check
 bun run test
 ```
 
-`build` and `preview` scripts are provided. A production build has not been run.
-Only run `bun run build` when explicitly requested. Vite uses relative base paths,
-and the dataset URL resolves through `import.meta.env.BASE_URL`. Production and
-deployed subpath verification remain pending. Nothing has been published.
+`build` and `preview` scripts are provided. Only run `bun run build` when
+explicitly authorized. Vite uses relative base paths, and the dataset URL resolves
+through `import.meta.env.BASE_URL`, supporting the GitHub Pages project subpath.
+
+## Publishing
+
+The GitHub Actions workflow in `.github/workflows/deploy-pages.yml` installs the
+locked dependencies, checks TypeScript, runs tests, builds, and deploys `dist`
+to GitHub Pages on pushes to `main`. It also supports manual dispatch. Configure
+the repository's Pages source as GitHub Actions. The site requires no backend,
+environment variables, custom domain, or API keys.
 
 ## Explore
 
 The map opens in 3D landscape. Flat view remains available in the view toggle.
-Story navigation and Restart story use the 3D view.
+Chapter two uses a flat view to show cold-spot locations; chapter three adds
+height in 3D. Restart story restores the opening 3D view.
 
-Use the visible choice buttons to change map colors, included areas and highlights.
+Open Map settings to change map colors and highlights. It starts collapsed in
+the story and opens automatically in free exploration. Target choices sit beside
+the coverage calculation.
 Arrow keys move between choices. "How to read this map" explains unfamiliar terms.
 Detailed chart values expand on demand.
 
 Use Next chapter to follow four steps: adoption, significant LL cold spots,
 underserved count heights, and counts outside the target. Manual layer, targeting,
-emphasis or camera changes enter free exploration. Resume story reapplies the
-current step. Restart story clears inspection and search. Inspection and search
+emphasis or camera changes enter free exploration, with a live summary of the
+current settings. Return to chapter restores that chapter's settings. The final
+chapter offers Explore the data. Restart story clears inspection and search. Inspection and search
 do not change targeting, totals or story mode.
 
 The map supports pointer inspection, orbit and zoom. Selecting a cell adds a
-thin amber outline and opens its details beside the map. Next, Back and Resume
-restore the story while keeping the selected cell highlighted. Selecting an area
+thin amber outline and opens its details beside the map while keeping narration
+visible. Next, Back and Return to chapter close map details while keeping the
+selected cell highlighted. Details lead with adoption, underserved count and
+target membership; statistical details expand on demand. Selecting an area
 from the tract list shows details beside that list, or directly below it on mobile.
-Close clears inspection. On mobile, selection brings the relevant details into view. Map colors and targeting calculations remain intact. A searchable HTML tract list
-provides keyboard inspection with ordinary buttons. The four layers have fixed
-dataset domains. Flat view and Reset camera retain analytical state. Heights
+Close clears inspection. On mobile, narration precedes the map, navigation
+follows it, and selection brings the relevant details into view. Color and
+highlight controls sit beside the map; target controls sit beside coverage.
+Coverage labels and the visible definition explain the underserved population proxy. A searchable HTML tract list
+provides keyboard inspection by selecting a tract ID. Progress indicators show
+the current chapter; Back and Next navigate the story. Restart appears after
+leaving the opening chapter or entering exploration. The four layers have fixed
+dataset domains. Flat view and Reset camera retain analytical state. Reset camera
+appears only when the camera has moved away from its default position. Heights
 range linearly from zero to 25% of the longest map extent. Reduced motion disables
 animated camera transitions.
 

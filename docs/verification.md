@@ -1,7 +1,16 @@
 # Verification
 
-Verified on 2026-11-02 in this standalone application folder. No production
-build, deployment or commit was performed.
+Verified on 2026-11-02 in this standalone application folder.
+
+## Publication preparation
+
+The standalone public repository is `jesco-tan/broadband-equity-landscape`.
+GitHub Pages is configured to deploy through GitHub Actions at
+https://jesco-tan.github.io/broadband-equity-landscape/.
+TypeScript, all 25 unit tests, and whitespace checks pass after the control
+simplification. The browser results below predate that simplification; no fresh
+browser verification has been performed for it. Production build and deployment
+verification are pending explicit build authorization.
 
 ## Data and non-build checks
 
@@ -13,8 +22,9 @@ build, deployment or commit was performed.
 - `bun run dev`: starts independently at http://127.0.0.1:5174.
 - A second `bun run dev` exits with "Port 5174 is already in use", confirming
   strict-port behavior.
-- `git check-ignore PLAN.md plan.md`: both ignored. The repository was created
-  on `main` with no commits. The planning document has never entered history.
+- `git check-ignore PLAN.md plan.md`: both ignored. The published branch's
+  history excludes the planning document. Only `main` is intended for publication;
+  internal checkpoint refs are excluded.
 
 Tests cover independently calculated aggregation results, complete and empty
 target sets, zero denominators, fractional estimates, county reconciliation,
@@ -25,7 +35,7 @@ multipolygon input, polygon-hole triangulation and story state transitions.
 
 `scripts/verify-browser.mjs` records the final browser run in
 `docs/browser-verification.json`. It operates against the dev server without
-running a build. All 24 browser checks passed with zero uncaught page errors.
+running a build. All 28 browser checks passed with zero uncaught page errors.
 The script covers:
 
 - Initial 3D/adoption/story state, with 3D first in the toggle and successful
@@ -33,14 +43,19 @@ The script covers:
 - Visible radio-button choices with native arrow-key navigation, and an
   expandable plain-language reading guide.
 - Pointer inspection opening adjacent selected-area details with a thin amber
-  outline, Close restoring the story, and mobile inspection scrolling details
-  into view. Story navigation restores narration without clearing selection;
+  outline while keeping narration visible, and mobile inspection scrolling
+  details into view. Story navigation closes map details without clearing selection;
   list inspection places the same details panel beside the list while leaving
-  narration visible. These two regressions have explicit browser assertions.
+  narration visible. Both flows have explicit browser assertions.
 - Pointer inspection preserving story mode, keyboard tract inspection, search
   preserving coverage, and inspection persisting through story/view changes.
 - LL counts of 119,165 covered and 401,987 excluded, displaying 22.9% coverage.
+- First-screen navigation, legend and view controls at 1280 by 800, with no
+  opening coverage number in the story. Map and target controls sit beside their context.
+- Flat cold-spot chapter followed by 3D height, an active final exploration action,
+  a live settings summary and chapter-specific return restoring settings.
 - Manual exploration, story resumption, all four chapters and restart behavior.
+- Mobile narration before the map and navigation directly after it.
 - Flat map footprint picking and outside emphasis preserving targeting.
 - Idle rendering stopping, 360 CSS pixel layout without horizontal overflow,
   and reduced motion avoiding an animated camera transition.
@@ -79,16 +94,17 @@ likewise is not GPU completion time. See the JSON for actual values and local
 target evaluation. The first-map measurement includes document navigation;
 `mapInitializationMs` isolates scene creation and its first rendered frame.
 
-Final local run: Chromium 150.0.7871.24 on Windows, Ryzen 7 7800X3D, 16 logical
-CPUs and 31 GiB reported RAM. Browser viewport was 1440 by 1050; map viewport
-1032 by 410 at pixel ratio 1. Warm navigation to first map was 150.2 ms, with
-87.9 ms spent initializing the map. Camera-interaction animation-frame interval
-p95 was 13.6 ms across 739 samples; CPU render-call p95 was 3.4 ms. The warm
-first-map target of two seconds and local interval target of 33 ms were met.
+Final local run: Chromium 156.0.8078.76 on Windows, Ryzen 7 7800X3D,
+16 logical CPUs and 31 GiB reported RAM. Browser viewport was 1440 by 1050;
+map viewport was 1002 by 320 at pixel ratio 1. Warm navigation to first map
+was 183.6 ms, with 113.9 ms spent initializing the map. Camera-interaction
+animation-frame interval p95 was 13.5 ms across 744 samples;
+CPU render-call p95 was 2.8 ms. The warm first-map target of two seconds
+and local interval target of 33 ms were met.
 
-A separate fresh-browser navigation took 21.198 seconds. Navigation timing shows
-20.986 seconds elapsed before the document request began; the document response
-then took about 2.7 ms. Subsequent loads were fast. This initial browser/network
+A separate fresh-browser navigation took 21.213 seconds. Navigation timing shows
+20.949 seconds elapsed before the document request began; the document response
+then took about 1.6 ms. Subsequent loads were fast. This initial browser/network
 startup delay occurs before application code runs and remains an environment
 limitation; its underlying browser/system cause was not established. Both
 initial-navigation timing and warm results are retained rather than excluding

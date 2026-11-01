@@ -56,7 +56,23 @@ try {
     "tilted",
   );
   check("Initial 3D state and WebGL map loaded");
+  assert.equal(await page.locator("#restart").isVisible(), false);
+  assert.equal(await page.locator("#reset").isVisible(), false);
+  assert.equal(await page.locator(".progress button").count(), 0);
+  assert.equal(await page.locator("#map-settings").getAttribute("open"), null);
+  await page.setViewportSize({ width: 1280, height: 800 });
+  for (const selector of ["#next", "#legend", ".map-controls"]) {
+    const bounds = await page.locator(selector).boundingBox();
+    assert.ok(bounds.y >= 0 && bounds.y + bounds.height <= 800, `${selector} is visible in the first screen`);
+  }
+  await page.screenshot({ path: "docs/desktop-opening.png", fullPage: false });
+  assert.doesNotMatch(await page.locator("#story-insight").textContent(), /100.0%/);
+  assert.equal(await page.locator("#layer").evaluate(n => !!n.closest(".landscape")), true);
+  assert.equal(await page.locator("#targeting").evaluate(n => !!n.closest(".analysis")), true);
+  check("First screen includes navigation, legend and view controls; controls are beside their context");
+  await page.setViewportSize({ width: 1440, height: 1050 });
   assert.equal(await page.locator("#controls select").count(), 0);
+  await page.locator("#map-settings > summary").click();
   await page.locator('#layer input[value="adoption"]').focus();
   await page.keyboard.press("ArrowRight");
   assert.equal(
@@ -81,7 +97,7 @@ try {
   assert.equal(await page.locator("#mode-label").textContent(), "Guided story");
   assert.ok(await page.locator(".detail-id").count());
   assert.equal(await page.locator("#selected-panel").isVisible(), true);
-  assert.equal(await page.locator("#story-content").isVisible(), false);
+  assert.equal(await page.locator("#story-content").isVisible(), true);
   const selectedMap = await page.evaluate(
     () => window.broadbandDiagnostics().selection,
   );
@@ -89,7 +105,7 @@ try {
   assert.ok(selectedMap.parts > 0);
   assert.equal(selectedMap.outlineWidth, 1.5);
   check(
-    "Pointer inspection opens adjacent details and a wide selected-cell outline",
+    "Pointer inspection opens adjacent details and a thin selected-cell outline",
   );
   check("Pointer inspection does not leave the guided story");
   await page.locator("#next").click();
@@ -110,6 +126,8 @@ try {
   assert.equal(await page.locator("#covered-value").textContent(), "119,165");
   assert.equal(await page.locator("#excluded-value").textContent(), "401,987");
   check("LL story totals match source");
+  assert.equal(await page.locator("#flat").getAttribute("aria-pressed"), "true");
+  check("Cold-spot chapter uses flat view before the height chapter");
   await page.locator("#search").fill("urban");
   await page.locator("[data-id]").first().focus();
   await page.keyboard.press("Enter");
@@ -149,6 +167,7 @@ try {
   );
   assert.equal(await page.locator("#covered-value").textContent(), "119,165");
   check("3D and outside emphasis preserve inspection and targeting");
+  await page.locator("#map-settings > summary").click();
   await page.locator('#layer input[value="income"]').check();
   assert.equal(
     await page.locator("#mode-label").textContent(),
@@ -157,6 +176,14 @@ try {
   await page.locator("#resume").click();
   assert.equal(await page.locator("#layer input:checked").inputValue(), "lisa");
   check("Manual controls explore; resume reapplies current step");
+  assert.equal(await page.locator("#next").textContent(), "Explore the data");
+  await page.locator("#next").click();
+  assert.equal(await page.locator("#next").isVisible(), false);
+  assert.equal(await page.locator("#story-title").evaluate(n => n === document.activeElement), true);
+  assert.match(await page.locator("#story-body").textContent(), /Colors:.*Target:.*Highlight:.*View:/);
+  assert.equal(await page.locator("#resume").textContent(), "Return to chapter 4");
+  await page.locator("#resume").click();
+  check("Final chapter opens exploration with a live settings summary and chapter-specific return");
   await page.locator("#flat").click();
   await page.waitForTimeout(800);
   assert.equal(
@@ -231,6 +258,12 @@ try {
       () => document.documentElement.scrollWidth <= innerWidth,
     ),
   );
+  const readingBox = await page.locator("#story-reading").boundingBox();
+  const mapBox = await page.locator("#map").boundingBox();
+  const navBox = await page.locator("#story-actions").boundingBox();
+  assert.ok(readingBox.y < mapBox.y && navBox.y >= mapBox.y + mapBox.height);
+  assert.equal(await page.locator("#story-reading").evaluate(n => n.parentElement.id), "mobile-story-slot");
+  check("Mobile reading order places narration before the map and navigation directly after it");
   await page.locator("#search").fill("060000017");
   await page.locator("[data-id]").first().click();
   await page.waitForTimeout(600);

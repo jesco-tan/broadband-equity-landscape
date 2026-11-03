@@ -1,48 +1,17 @@
-# Data validation
+# Verified synthetic fixture v2
 
-Pinned run: `35056d8c204c1f631be3ff2f5ac00a2495113a52`.
+The explorer now loads `public/data/broadband-synthetic.v2.json`. Historical v1 remains in Git history and is no longer used. Source commit records the analytical starting revision, not an uncommitted result. The analysis manifest hash and source/output hashes identify the executed local run.
 
-The export adapter decoded all 400 records from the committed LISA map and
-reconciled counts with `outputs/run_summary.json` from the same commit.
+400 cells, 258 below threshold, 521,152 underserved proxy units. Adjusted LL: 90 cells and 85,741 units, leaving 435,411 (83.5%) outside. Cluster counts: LL 90, HH 60, LH 4, NS 246. Rural outside: 132,879; suburban: 234,282; urban: 68,250.
 
-| Measure | Exported value |
-| --- | ---: |
-| Tracts | 400 |
-| Total population-based household proxy | 1,222,162 |
-| Underserved proxy | 521,152 |
-| Significant LL tracts | 113 |
-| Underserved proxy in LL | 119,165 |
-| Underserved proxy outside LL | 401,987 |
-| LL coverage, unrounded | 0.2286568985631831 |
-| LL coverage, display | 22.9% |
+Queen integer-grid adjacency has one component, no islands and mean degree 7.41. Seed 42, 9,999 permutations, two-sided local pseudo p-values with Benjamini-Yekutieli adjustment over 400 tests. `lisaPValue` now contains the adjusted value used for classification. Rook sensitivity covers 2.5%; selected cells are sensitive to the neighbour definition.
 
-Cluster counts: HH 92, LL 113, HL 0, LH 4, NS 191.
-There is no discrepancy with the committed summary or rounded report coverage.
-The geographic framing in upstream prose is not adopted as a measured finding.
+## Regenerate
 
-| Synthetic county type | Underserved proxy | Inside LL | Outside LL |
-| --- | ---: | ---: | ---: |
-| Rural | 218,620 | 119,165 | 99,455 |
-| Suburban | 234,282 | 0 | 234,282 |
-| Urban | 68,250 | 0 | 68,250 |
+```powershell
+python scripts/export_dataset.py --source ../geospatial-urban-analytics --output public/data/broadband-synthetic.v2.json
+bun test
+bun run check
+```
 
-Integer counts are exact. Dataset reconciliation tolerances are 1e-8 for counts
-and 1e-10 for rates. Display precision is zero decimals for proxy counts and
-income, one decimal for percentage rates. Aggregation always uses unrounded
-values. Source p-values are retained; rounding does not determine membership.
-
-Export checks include count and cluster reconciliation, unique IDs, count bounds,
-finite coordinates and closed nonempty rings. The browser additionally checks
-schema version, metadata, optional value bounds, required fields, geometry,
-cluster vocabulary and all reference summary values, rejecting the whole load
-if any record fails. Optional null values remain missing, never zero.
-
-Automated fixtures exercise empty and complete targeting, zero denominators,
-fractional counts, missing optional fields, unknown county groups, polygon holes,
-multipolygons and malformed records. See docs/verification.md for results.
-
-## Analytical limits and source bytes
-
-The pinned analytical weights graph has 45 disconnected components and mean degree 4.25. The explorer preserves the saved labels; it does not validate upstream grid topology or rerun LISA. Local tests use uncorrected pseudo p-values. No causal or eligibility claim follows from these labels.
-
-The recorded source hash is over CRLF bytes. The public raw source is LF-normalized; reconstructing CRLF reproduces the recorded SHA-256. Record content equivalence separately from byte identity. Internal tract and household field names are schema compatibility identifiers for synthetic cells and generated population proxies.
+The exporter fails on input or output hash mismatches. Upstream REPORT.md documents the analytical command and tolerance. No observed household need, causal impact or actual subsidy eligibility is established. The current source fixture is v2; deployment status is checked separately. Earlier browser verification applies to the historical release, not this fixture.

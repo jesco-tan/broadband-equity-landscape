@@ -1,20 +1,20 @@
 import { expect, test } from "bun:test";
 import { validateDataset } from "../src/data";
 import { coverage } from "../src/analytics";
-import fixture from "../public/data/broadband-synthetic.v1.json";
+import fixture from "../public/data/broadband-synthetic.v2.json";
 const clone = () => structuredClone(fixture);
 test("real fixture reconciles saved upstream totals and final classifications", () => {
   const d = validateDataset(fixture);
   expect(d.tracts).toHaveLength(400);
   expect(coverage(d.tracts, "ll")).toEqual({
     total: 521152,
-    covered: 119165,
-    excluded: 401987,
-    coverageRate: 119165 / 521152,
-    excludedRate: 401987 / 521152,
+    covered: 85741,
+    excluded: 435411,
+    coverageRate: 85741 / 521152,
+    excludedRate: 435411 / 521152,
   });
-  expect(d.tracts.filter((t) => t.lisaCluster === "LL")).toHaveLength(113);
-  expect(d.tracts.filter((t) => t.lisaCluster === "NS")).toHaveLength(191);
+  expect(d.tracts.filter((t) => t.lisaCluster === "LL")).toHaveLength(90);
+  expect(d.tracts.filter((t) => t.lisaCluster === "NS")).toHaveLength(246);
 });
 const invalidCases: [string, (d: any) => unknown][] = [
   ["schema", (d: any) => (d.schemaVersion = 2)],

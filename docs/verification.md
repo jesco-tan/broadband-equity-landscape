@@ -1,3 +1,5 @@
+> Historical browser verification of v1. It does not verify the corrected v2 fixture. See data-validation.md for current checks.
+
 # Verification
 
 Verified on 2026-11-02 in this standalone application folder.

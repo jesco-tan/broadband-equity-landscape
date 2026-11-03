@@ -46,7 +46,7 @@ const stories = [
 async function start() {
   try {
     const response = await fetch(
-      `${import.meta.env.BASE_URL}data/broadband-synthetic.v1.json`,
+      `${import.meta.env.BASE_URL}data/broadband-synthetic.v2.json`,
     );
     if (!response.ok)
       throw new Error(`Dataset request failed (${response.status}).`);
@@ -398,7 +398,7 @@ function mount(data: Dataset) {
   };
   const m = data.metadata;
   el("provenance").innerHTML =
-    `<p><strong>${escape(m.title)}. Synthetic dataset.</strong> No real ACS mode or measured California findings are included.</p><p>The saved analytical graph has 45 disconnected components and mean degree 4.25. This view preserves its uncorrected local-test labels; it does not validate grid connectivity or rerun LISA.</p><dl>${Object.entries(
+    `<p><strong>${escape(m.title)}. Synthetic dataset.</strong> No real ACS mode or measured California findings are included.</p><p>The analytical run uses a verified connected queen grid, seed 42 and 9,999 permutations. Local labels use Benjamini-Yekutieli adjustment across 400 two-sided tests. Rook sensitivity changes the selected cells; see the analytical report.</p><dl>${Object.entries(
       m.definitions,
     )
       .map(([k, v]) => `<div><dt>${escape(k)}</dt><dd>${escape(v)}</dd></div>`)

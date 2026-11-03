@@ -1,9 +1,9 @@
-# Verification, 3 November 2026
+# Validation
 
-All 25 Bun tests, TypeScript checks and the production build passed. Headless Chrome checked the current provenance disclosure and cell wording at desktop and mobile sizes with no runtime errors or horizontal overflow. All 400 fixture records and classifications remain unchanged. Existing bundle-size warnings do not fail the build.
+I checked the v2 fixture against the analytical run manifest and reconciled all 400 cell records, final classifications and population-proxy targeting totals. All 25 Bun tests and the TypeScript check passed.
 
-## Interpretation limits
+The tests cover fixture validation, coverage arithmetic, geometry and state transitions. They check that inspection, search and presentation controls preserve the targeting rule unless a targeting action explicitly changes it.
 
-The current results are synthetic demonstrations. Passing software checks does not validate real-world predictive performance, causality or business benefit.
+## Scope
 
-The saved graph has 45 disconnected components and mean degree 4.25; local tests are uncorrected and their random seed was not recorded. The current fixture retains the saved graph results and does not claim a repaired connected lattice.
+The explorer displays saved results from a synthetic spatial analysis; it does not rerun inference in the browser or establish actual household need. These checks do not constitute a new browser or deployment verification of v2. See [data-validation.md](docs/data-validation.md) for provenance and reproduction. Earlier browser checks apply to the historical release described in [verification.md](docs/verification.md).

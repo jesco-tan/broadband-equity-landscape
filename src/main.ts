@@ -79,10 +79,10 @@ function mount(data: Dataset) {
       : `${fmt(n * 100, data.metadata.displayPrecision.rate)}%`;
   app.innerHTML = `
     <a class="skip" href="#main-content">Skip to main content</a>
-    <header class="masthead"><a href="./" class="wordmark"><span class="mark" aria-hidden="true">▥</span> Fieldnotes <span class="wordmark-sub">Spatial equity lab</span></a><span class="dataset-badge">Synthetic data <span aria-hidden="true">/</span> ${data.tracts.length} example tracts</span><a class="source-link" href="${escape(data.metadata.sourceRepository)}/tree/${data.metadata.sourceCommit}" target="_blank" rel="noreferrer">View source</a></header>
+    <header class="masthead"><a href="./" class="wordmark"><span class="mark" aria-hidden="true">▥</span> Fieldnotes <span class="wordmark-sub">Spatial equity lab</span></a><span class="dataset-badge">Synthetic data <span aria-hidden="true">/</span> ${data.tracts.length} synthetic cells</span><a class="source-link" href="${escape(data.metadata.sourceRepository)}/tree/${data.metadata.sourceCommit}" target="_blank" rel="noreferrer">View source</a></header>
     <main id="main-content" tabindex="-1">
       <section class="intro"><div><p class="eyebrow">Broadband equity landscape</p><h1>Cold spots are places.<br>Need lives in households.</h1></div><p class="intro-note">Does targeting areas with low internet use reach everyone who needs help?</p></section>
-      <div class="method-note"><p><strong>Synthetic example.</strong> Counts use population as a household stand-in.</p>${readingGuide()}</div>
+      <div class="method-note"><p><strong>Synthetic example.</strong> Counts are generated population proxies, not measured households.</p>${readingGuide()}</div>
       <div class="workspace">
         <div id="mobile-story-slot"></div>
         <section class="landscape" aria-label="Interactive landscape">
@@ -102,7 +102,7 @@ function mount(data: Dataset) {
         <div class="metrics" aria-live="polite"><div><span id="coverage-value" class="metric-number"></span><span>Share of underserved count inside target</span></div><div><span id="covered-value" class="metric-number"></span><span>Underserved count inside target (proxy)</span></div><div><span id="excluded-value" class="metric-number"></span><span>Underserved count outside target (proxy)</span></div></div>
         <div class="charts"><figure><figcaption><h3>Inside versus outside</h3></figcaption><div id="total-chart"></div><div class="chart-key"><span><i class="inside-swatch"></i>Inside target</span><span><i class="outside-swatch"></i>Outside target</span></div><details class="chart-data"><summary>View values</summary><table class="chart-table"><caption class="sr-only">Overall coverage values</caption><thead><tr><th scope="col">Location</th><th scope="col">Count proxy</th><th scope="col">Share</th></tr></thead><tbody id="total-table"></tbody></table></details></figure><figure><figcaption><h3>By area type</h3><p>Same count scale across groups.</p></figcaption><div id="county-chart"></div><details class="chart-data"><summary>View values</summary><table class="chart-table"><caption class="sr-only">Coverage by synthetic county type</caption><thead><tr><th scope="col">Type</th><th scope="col">Inside</th><th scope="col">Outside</th><th scope="col">Coverage</th></tr></thead><tbody id="county-table"></tbody></table></details></figure></div>
       </section>
-      <section id="inspection" class="inspection" aria-labelledby="tract-heading"><div><h2 id="tract-heading">Inspect a tract</h2><label for="search">Search by area ID or type</label><input id="search" type="search" placeholder="Search 400 tracts" autocomplete="off" aria-controls="tract-list"><p id="search-count" role="status" class="subtle"></p><div class="tract-scroll"><table class="tract-table"><caption class="sr-only">Searchable tract list. Choose a tract ID for details.</caption><thead><tr><th scope="col">Tract</th><th scope="col">Type</th><th scope="col">Pattern</th></tr></thead><tbody id="tract-list"></tbody></table></div></div><aside id="list-details-slot" class="tract-detail" aria-label="Selected tract details" hidden></aside></section>
+      <section id="inspection" class="inspection" aria-labelledby="tract-heading"><div><h2 id="tract-heading">Inspect a synthetic cell</h2><label for="search">Search by area ID or type</label><input id="search" type="search" placeholder="Search 400 cells" autocomplete="off" aria-controls="tract-list"><p id="search-count" role="status" class="subtle"></p><div class="tract-scroll"><table class="tract-table"><caption class="sr-only">Searchable synthetic cell list. Choose a cell ID for details.</caption><thead><tr><th scope="col">Cell</th><th scope="col">Type</th><th scope="col">Pattern</th></tr></thead><tbody id="tract-list"></tbody></table></div></div><aside id="list-details-slot" class="tract-detail" aria-label="Selected cell details" hidden></aside></section>
       <details class="methodology"><summary>Data & methodology</summary><div id="provenance"></div></details>
     </main><footer><span>Fieldnotes / Broadband equity</span><a href="?renderer=table">Use table view</a></footer>`;
 
@@ -149,10 +149,10 @@ function mount(data: Dataset) {
       ? rows
           .map(
             (t) =>
-              `<tr class="${t.id === state.inspectedTractId ? "selected" : ""}"><th scope="row"><button class="inspect-button" data-id="${escape(t.id)}" aria-label="Inspect tract ${escape(t.id)}" aria-pressed="${t.id === state.inspectedTractId}">${escape(t.id)}</button></th><td>${escape(t.countyType ?? "Not available")}</td><td>${clusterNames[t.lisaCluster]}</td></tr>`,
+              `<tr class="${t.id === state.inspectedTractId ? "selected" : ""}"><th scope="row"><button class="inspect-button" data-id="${escape(t.id)}" aria-label="Inspect cell ${escape(t.id)}" aria-pressed="${t.id === state.inspectedTractId}">${escape(t.id)}</button></th><td>${escape(t.countyType ?? "Not available")}</td><td>${clusterNames[t.lisaCluster]}</td></tr>`,
           )
           .join("")
-      : '<tr><td colspan="3">No matching tracts. Try a shorter ID or a county type.</td></tr>';
+      : '<tr><td colspan="3">No matching cells. Try a shorter ID or a county type.</td></tr>';
   }
   let displayedDetailKey = "";
   function renderDetail(t: Tract | undefined) {
@@ -181,12 +181,12 @@ function mount(data: Dataset) {
       );
     }
     el("detail").innerHTML = t
-      ? `<p class="detail-id">${escape(t.id)}</p><p class="subtle">Synthetic tract / ${escape(t.countyType ?? "Not available")}</p><dl>${[
+      ? `<p class="detail-id">${escape(t.id)}</p><p class="subtle">Synthetic cell / ${escape(t.countyType ?? "Not available")}</p><dl>${[
           ["Broadband adoption", t.broadbandAdoptionRate === null ? "Not available" : pct(t.broadbandAdoptionRate)],
           ["Underserved count (proxy)", fmt(t.underservedHouseholds)],
         ].map(([label, value]) => `<div><dt>${label}</dt><dd>${value}</dd></div>`).join("")}<div><dt>Current target</dt><dd id="detail-target">${targetLabel}</dd></div></dl>
         <details class="statistical-details"><summary>Statistical details</summary><dl>${[
-          ["Median household income", t.medianHouseholdIncome === null ? "Not available" : "$" + fmt(t.medianHouseholdIncome, data.metadata.displayPrecision.income)],
+          ["Income (synthetic USD)", t.medianHouseholdIncome === null ? "Not available" : "$" + fmt(t.medianHouseholdIncome, data.metadata.displayPrecision.income)],
           ["Total count (proxy)", fmt(t.totalHouseholds)],
           ["Area pattern", `${clusterNames[t.lisaCluster]} (${t.lisaCluster})`],
           ["Pattern test p-value", t.lisaPValue === null ? "Not available" : fmt(t.lisaPValue, 3)],
@@ -255,7 +255,7 @@ function mount(data: Dataset) {
       `<div class="stacked" aria-hidden="true"><span class="inside" style="width:${denominator ? (covered / denominator) * 100 : 0}%"></span><span class="outside" style="width:${denominator ? (excluded / denominator) * 100 : 0}%"></span></div>`;
     el("total-chart").innerHTML = c.total
       ? `${bar(c.covered, c.excluded, c.total)}<div class="bar-endpoints"><span>0</span><span>${fmt(c.total)}</span></div>`
-      : "<p>No underserved households in this dataset. Rates are not applicable.</p>";
+      : "<p>No underserved proxy units in this dataset. Rates are not applicable.</p>";
     el("total-table").innerHTML =
       `<tr><th scope="row">Inside</th><td>${fmt(c.covered)}</td><td>${pct(c.coverageRate)}</td></tr><tr><th scope="row">Outside</th><td>${fmt(c.excluded)}</td><td>${pct(c.excludedRate)}</td></tr>`;
     const axisMax = Math.max(0, ...groups.map((g) => g.total));
@@ -267,7 +267,7 @@ function mount(data: Dataset) {
           )
           .join("") +
         `<div class="bar-endpoints"><span>0</span><span>${fmt(axisMax)}</span></div>`
-      : "<p>No underserved households in these groups.</p>";
+      : "<p>No underserved proxy units in these groups.</p>";
     el("county-table").innerHTML = groups
       .map(
         (g) =>
@@ -398,7 +398,7 @@ function mount(data: Dataset) {
   };
   const m = data.metadata;
   el("provenance").innerHTML =
-    `<p><strong>${escape(m.title)}. Synthetic dataset.</strong> No real ACS mode or measured California findings are included.</p><dl>${Object.entries(
+    `<p><strong>${escape(m.title)}. Synthetic dataset.</strong> No real ACS mode or measured California findings are included.</p><p>The saved analytical graph has 45 disconnected components and mean degree 4.25. This view preserves its uncorrected local-test labels; it does not validate grid connectivity or rerun LISA.</p><dl>${Object.entries(
       m.definitions,
     )
       .map(([k, v]) => `<div><dt>${escape(k)}</dt><dd>${escape(v)}</dd></div>`)
@@ -408,10 +408,10 @@ function mount(data: Dataset) {
   function fallback(message: string) {
     el("map").classList.add("table-mode");
     el("map").innerHTML =
-      `<div class="fallback"><span aria-hidden="true">▦</span><h3>Explore through the tract table</h3><p role="status">${escape(message)}</p><a href="#tract-heading">Go to searchable tracts</a><p>Targeting, coverage, charts and tract inspection remain available.</p></div>`;
+      `<div class="fallback"><span aria-hidden="true">▦</span><h3>Explore through the cell table</h3><p role="status">${escape(message)}</p><a href="#tract-heading">Go to searchable cells</a><p>Targeting, coverage, charts and cell inspection remain available.</p></div>`;
     el("reset").hidden = true;
     el("map-hint").textContent =
-      "Use the searchable tract table below to inspect every record.";
+      "Use the searchable cell table below to inspect every record.";
   }
   render();
   if (new URLSearchParams(location.search).get("renderer") === "table")

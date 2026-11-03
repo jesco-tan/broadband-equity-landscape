@@ -95,3 +95,9 @@ development: upstream pins NumPy 1.26.4, GeoPandas 0.14.4, pandas 2.2.2,
 libpysal 4.10.0, esda 2.6.0, and other Python requirements. Use a compatible
 Python environment, rather than attempting to install those old binary pins
 under Python 3.14. The browser never recalculates spatial statistics.
+
+## Analytical limits and source bytes
+
+The pinned analytical weights graph has 45 disconnected components and mean degree 4.25. The explorer preserves the saved labels; it does not validate upstream grid topology or rerun LISA. Local tests use uncorrected pseudo p-values. No causal or eligibility claim follows from these labels.
+
+The recorded source hash is over CRLF bytes. The public raw source is LF-normalized; reconstructing CRLF reproduces the recorded SHA-256. Record content equivalence separately from byte identity. Internal tract and household field names are schema compatibility identifiers for synthetic cells and generated population proxies.
